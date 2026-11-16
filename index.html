@@ -164,6 +164,34 @@
       padding-top: 5rem;
     }
 
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .profile-photo {
+      justify-self: end;
+      width: min(100%, 300px);
+      aspect-ratio: 1;
+      margin: 0;
+      padding: 0.55rem;
+      background: linear-gradient(145deg, var(--accent), var(--bg-soft));
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 24%;
+      border: 5px solid var(--bg);
+      border-radius: 50%;
+    }
+
     .hero-badge {
       display: inline-block;
       background: var(--bg-soft);
@@ -488,6 +516,17 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .profile-photo {
+        justify-self: start;
+        width: min(230px, 70vw);
+        order: -1;
+      }
+
       .hero-actions {
         flex-direction: column;
       }
@@ -520,18 +559,25 @@
   <main id="conteudo-principal">
     <!-- SOBRE -->
     <section id="sobre">
-      <span class="hero-badge">Estudante · Comunicação Digital</span>
-      <h1 data-editable>Claison Tamba</h1>
-      <p class="lead" data-editable>
-        Sou estudante na ISCIA, Aveiro, com forte interesse em restauração e indústria.
-        Tenho experiência prática como empregado de mesa em Vila Baleira, Porto Santo,
-        onde desenvolvi competências de atendimento, trabalho em equipa e organização
-        em ambiente de ritmo elevado. Procuro oportunidades que unam serviço ao cliente,
-        processos industriais e crescimento profissional contínuo.
-      </p>
-      <div class="hero-actions">
-        <a href="#contacto" class="btn btn-primary">Entrar em contacto</a>
-        <a href="#experiencia" class="btn btn-secondary">Ver experiência</a>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <span class="hero-badge">Estudante · Comunicação Digital</span>
+          <h1 data-editable>Claison Tamba</h1>
+          <p class="lead" data-editable>
+            Sou estudante na ISCIA, Aveiro, com forte interesse em restauração e indústria.
+            Tenho experiência prática como empregado de mesa em Vila Baleira, Porto Santo,
+            onde desenvolvi competências de atendimento, trabalho em equipa e organização
+            em ambiente de ritmo elevado. Procuro oportunidades que unam serviço ao cliente,
+            processos industriais e crescimento profissional contínuo.
+          </p>
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Entrar em contacto</a>
+            <a href="#experiencia" class="btn btn-secondary">Ver experiência</a>
+          </div>
+        </div>
+        <figure class="profile-photo">
+          <img src="assets/profile-claison.jpg" alt="Fotografia de perfil de Claison Tamba" width="1200" height="1600" fetchpriority="high" />
+        </figure>
       </div>
     </section>
 
