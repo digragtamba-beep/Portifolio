@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,7 +35,9 @@
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(37, 99, 235, 0.12), transparent 28rem),
+        var(--bg);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
@@ -114,7 +116,7 @@
     }
 
     section {
-      padding: 4.5rem 0 2rem;
+      padding: 6rem 0 2.5rem;
       scroll-margin-top: 5.5rem;
       border-bottom: 1px solid var(--border);
     }
@@ -132,7 +134,7 @@
     }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.1rem);
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.15;
@@ -140,7 +142,7 @@
     }
 
     h2 {
-      font-size: 1.65rem;
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 1.5rem;
@@ -153,7 +155,7 @@
     }
 
     .lead {
-      font-size: 1.15rem;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
       color: var(--text-muted);
       max-width: 640px;
       margin-bottom: 1.5rem;
@@ -161,25 +163,40 @@
 
     /* ========== HERO ========== */
     #sobre {
-      padding-top: 5rem;
+      min-height: min(760px, calc(100vh - 64px));
+      padding-top: 7rem;
+      display: grid;
+      align-items: center;
     }
 
     .hero-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 300px;
-      gap: 3.5rem;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+      gap: clamp(3rem, 8vw, 7rem);
       align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 670px;
     }
 
     .profile-photo {
       justify-self: end;
-      width: min(100%, 300px);
-      aspect-ratio: 1;
+      position: relative;
+      width: min(100%, 390px);
+      aspect-ratio: 4 / 5;
       margin: 0;
-      padding: 0.55rem;
-      background: linear-gradient(145deg, var(--accent), var(--bg-soft));
-      border-radius: 50%;
-      box-shadow: var(--shadow);
+      padding: 0.45rem;
+      background: linear-gradient(145deg, var(--accent), rgba(37, 99, 235, 0.1));
+      border-radius: 1.6rem;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      transform: rotate(2deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-photo:hover {
+      transform: rotate(0deg) translateY(-6px);
+      box-shadow: 0 28px 80px rgba(37, 99, 235, 0.2);
     }
 
     .profile-photo img {
@@ -187,9 +204,46 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 24%;
-      border: 5px solid var(--bg);
-      border-radius: 50%;
+      object-position: center 18%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 1.25rem;
+    }
+
+    .profile-caption {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      left: 1rem;
+      padding: 0.8rem 1rem;
+      color: var(--text);
+      background: rgba(15, 20, 25, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 0.8rem;
+      backdrop-filter: blur(12px);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-fact {
+      display: grid;
+      gap: 0.15rem;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .hero-fact strong {
+      color: var(--text);
+      font-size: 0.95rem;
     }
 
     .hero-badge {
@@ -246,14 +300,16 @@
     /* ========== CARDS ========== */
     .cards {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.25rem;
     }
 
     .card {
+      position: relative;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.5rem;
+      padding: 1.75rem;
       transition: border-color 0.2s, transform 0.2s;
     }
     .card:hover {
@@ -275,12 +331,12 @@
     /* ========== SKILLS ========== */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 0.85rem;
     }
 
     .skill {
-      background: var(--bg-card);
+      background: rgba(26, 35, 50, 0.72);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 0.9rem 1rem;
@@ -297,18 +353,27 @@
     /* ========== PROJECTS ========== */
     .project-list {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.25rem;
+    }
+
+    .project-list .card {
+      min-height: 190px;
     }
 
     /* ========== CONTACT ========== */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
+      grid-template-columns: 0.85fr 1.15fr;
       gap: 2.5rem;
       align-items: start;
     }
 
     .contact-info {
+      padding: 1.75rem;
+      background: linear-gradient(145deg, var(--bg-card), rgba(26, 35, 50, 0.45));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
@@ -489,7 +554,7 @@
     }
 
     /* ========== RESPONSIVE ========== */
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .menu-toggle {
         display: block;
       }
@@ -516,15 +581,29 @@
         grid-template-columns: 1fr;
       }
 
+      #sobre {
+        min-height: auto;
+        padding-top: 4.5rem;
+      }
+
       .hero-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
 
       .profile-photo {
-        justify-self: start;
-        width: min(230px, 70vw);
+        justify-self: center;
+        width: min(270px, 78vw);
         order: -1;
+      }
+
+      .cards,
+      .project-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-facts {
+        gap: 1rem 1.5rem;
       }
 
       .hero-actions {
@@ -574,9 +653,15 @@
             <a href="#contacto" class="btn btn-primary">Entrar em contacto</a>
             <a href="#experiencia" class="btn btn-secondary">Ver experiência</a>
           </div>
+          <div class="hero-facts" aria-label="Informação rápida">
+            <div class="hero-fact"><strong>Comunicação Digital</strong><span>Área de formação</span></div>
+            <div class="hero-fact"><strong>Aveiro, Portugal</strong><span>Localização atual</span></div>
+            <div class="hero-fact"><strong>Disponível</strong><span>Para novas oportunidades</span></div>
+          </div>
         </div>
         <figure class="profile-photo">
           <img src="assets/profile-claison.jpg" alt="Fotografia de perfil de Claison Tamba" width="1200" height="1600" fetchpriority="high" />
+          <figcaption class="profile-caption">Claison Tamba · Estudante e profissional em crescimento</figcaption>
         </figure>
       </div>
     </section>
@@ -726,7 +811,7 @@
   <div class="save-toast" id="toast" role="status" aria-live="polite">Alterações guardadas neste browser</div>
 
   <script>
-    const STORAGE_KEY = 'claison-portfolio-content';
+    const STORAGE_KEY = 'claison-portfolio-content-v2';
     const CONTACT_EMAIL = 'digragtamba@gmail.com';
     let editMode = false;
 
